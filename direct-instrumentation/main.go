@@ -76,6 +76,21 @@ func main() {
 		}
 	}()
 
+	/*
+		goroutine that writes a random number to metrics value
+		5 times and sleeps for 5s.
+
+		Uncomment the block below and comment the block above to
+		see how stale metrics is exposed after you stop updating it.
+	*/
+	// go func() {
+	// 	for i := 0; i < 5; i++ {
+	// 		rnd := rand.Float64()
+	// 		randomNumber.Set(rnd)
+	// 		time.Sleep(time.Duration(5) * time.Second)
+	// 	}
+	// }()
+
 	// Expose the registered metrics via HTTP.
 	http.Handle("/metrics", promhttp.HandlerFor(
 		prometheus.DefaultGatherer,
